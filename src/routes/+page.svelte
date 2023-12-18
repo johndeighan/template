@@ -1,2 +1,14 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<h1>This is a SvelteKit template (by {name}) with:</h1>
+<ul>
+	<li>Git source code management</li>
+	<li>A layout with a simple menu</li>
+	<li>Markdown enabled</li>
+	<li>A deploy script deploying as a static app on surge.sh</li>
+	<li>GitHub integration</li>
+	<li>CoffeeScript enabled</li>
+</ul>
+
+<script lang="coffee">
+	name = 'John'
+	console.log "my name is #{name}"
+</script>

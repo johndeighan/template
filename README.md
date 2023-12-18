@@ -1,38 +1,110 @@
-# create-svelte
+Create a template folder
+========================
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+- A Skeleton SvelteKit app
+- Git source code management
+- CoffeeScript enabled
+- vite and svelte config files converted to CoffeeScript
+- A layout with a simple menu
+- Markdown enabled
+- Easy deployment as a static app
+- GitHub integration
+- access to @jdeighan/base-utils
 
-## Creating a project
 
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Instructions:
 
 ```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+$ npm create svelte@latest template
+	Skeleton project, no TypeScript, etc.
+$ cd template
+$ npm install
+$ npm install -D coffeescript npm-run-all @sveltejs/adapter-static
+$ npm install -D @jdeighan/base-utils @jdeighan/svelte-utils
+$ git init
+$ git add -A
+$ git commit -m "initial commit"
+$ npm run dev -- --open
 ```
 
-## Building
+Change `package.json` to:
 
-To create a production version of your app:
-
-```bash
-npm run build
+```json
+{
+	"name": "@jdeighan/template",
+	"version": "1.0.0",
+	"type": "module",
+	"scripts": {
+		"coffee:watch": "npx coffee -c -w .",
+		"vite:dev": "vite dev",
+		"dev": "npx coffee -c . && run-p coffee:watch vite:dev",
+		"build": "npx coffee -c . && vite build",
+		"preview": "vite preview"
+	},
+	"devDependencies": {
+		"@sveltejs/adapter-auto": "^3.0.0",
+		"@sveltejs/kit": "^2.0.0",
+		"@sveltejs/vite-plugin-svelte": "^3.0.0",
+		"coffeescript": "^2.7.0",
+		"npm-run-all": "^4.1.5",
+		"svelte": "^4.2.7",
+		"vite": "^5.0.3"
+	}
+}
 ```
 
-You can preview the production build with `npm run preview`.
+Change `src/routes/+page.svelte` to:
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+```svelte
+<h1>This is a SvelteKit template with:</h1>
+<ul>
+	<li>Git source code management</li>
+	<li>A layout with a simple menu</li>
+	<li>Markdown enabled</li>
+	<li>A deploy script deploying as a static app on ???</li>
+	<li>GitHub integration</li>
+	<li>CoffeeScript enabled</li>
+</ul>
+```
+
+Add file `svelte.config.coffee`:
+
+```coffee
+import adapter from '@sveltejs/adapter-static'
+import {coffeePreProcessor} from '@jdeighan/svelte-utils/preprocessors'
+
+export default {
+	kit: {
+		adapter: adapter()
+		}
+	preprocess: {
+		script: coffeePreProcessor
+		}
+	}
+```
+
+Add file `vite.config.coffee`:
+
+```coffee
+import {sveltekit} from '@sveltejs/kit/vite'
+import {defineConfig} from 'vite'
+
+export default {
+	plugins: [sveltekit()]
+	}
+```
+
+Test use of CoffeeScript by:
+
+Add this `<script>` block to `src/routes/+page.svelte`:
+
+```html
+<script lang="coffee">
+	name = 'John'
+	console.log "my name is #{name}"
+</script>
+```
+
+Also use `{name}` somewhere on the page. Check your
+console logs for the logged string.
+
