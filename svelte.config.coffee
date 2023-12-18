@@ -1,11 +1,17 @@
 import adapter from '@sveltejs/adapter-static'
+import {mdsvex} from 'mdsvex'
 import {coffeePreProcessor} from '@jdeighan/svelte-utils/preprocessors'
 
 export default {
 	kit: {
 		adapter: adapter()
 		}
-	preprocess: {
-		script: coffeePreProcessor
-		}
+	extensions: ['.svelte', '.md'],
+	preprocess: [
+#		sveltePreprocess()
+		mdsvex({extensions: ['.md']})
+		{
+			script: coffeePreProcessor
+			}
+		]
 	}

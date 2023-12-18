@@ -5,6 +5,7 @@ Create a template folder
 - Git source code management
 - CoffeeScript enabled
 - vite and svelte config files converted to CoffeeScript
+
 - A layout with a simple menu
 - Markdown enabled
 - Easy deployment as a static app
@@ -20,6 +21,7 @@ $ npm create svelte@latest template
 $ cd template
 $ npm install
 $ npm install -D coffeescript npm-run-all @sveltejs/adapter-static
+$ npm install -D mdsvex
 $ npm install -D @jdeighan/base-utils @jdeighan/svelte-utils
 $ git init
 $ git add -A
@@ -71,15 +73,20 @@ Add file `svelte.config.coffee`:
 
 ```coffee
 import adapter from '@sveltejs/adapter-static'
+import {mdsvex} from 'mdsvex'
 import {coffeePreProcessor} from '@jdeighan/svelte-utils/preprocessors'
 
 export default {
 	kit: {
 		adapter: adapter()
 		}
-	preprocess: {
-		script: coffeePreProcessor
-		}
+	extensions: ['.svelte', '.md'],
+	preprocess: [
+		mdsvex({extensions: ['.md']})
+		{
+			script: coffeePreProcessor
+			}
+		]
 	}
 ```
 
@@ -108,3 +115,18 @@ Add this `<script>` block to `src/routes/+page.svelte`:
 Also use `{name}` somewhere on the page. Check your
 console logs for the logged string.
 
+Test markdown by creating the file `src/routes/test/+page.md`:
+
+```md
+Markdown test page
+==================
+
+This is a **markdown page**
+
+Here is some stuff I use:
+
+- CoffeeScript
+- MarkDown
+```
+
+Then browse to `localhost:5173/test`.
