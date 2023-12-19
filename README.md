@@ -8,10 +8,11 @@ Create a template folder
 - vite and svelte config files converted to CoffeeScript
 - Markdown enabled
 - GitHub integration
-
 - A layout with a simple menu
-- an installable web app
+
+- a basic store, using local storage
 - Easy deployment as a static app
+- an installable web app
 
 
 Instructions:
@@ -69,11 +70,13 @@ Change `src/routes/+page.svelte` to:
 <h1>This is a SvelteKit template with:</h1>
 <ul>
 	<li>Git source code management</li>
-	<li>A layout with a simple menu</li>
-	<li>Markdown enabled</li>
-	<li>A deploy script deploying as a static app on ???</li>
-	<li>GitHub integration</li>
 	<li>CoffeeScript enabled</li>
+	<li>Markdown enabled</li>
+	<li>GitHub integration</li>
+	<li>A layout with a simple menu</li>
+	<li>Ability to create a simple data store in local storage</li>
+	<li>Implemented as an installable web app</li>
+	<li>A deploy script deploying as a static app on surge.sh</li>
 </ul>
 ```
 
@@ -160,4 +163,135 @@ committing locally) via:
 $ git push
 ```
 
+Create a layout with menu
+-------------------------
+
+Create the file `src/routes/about/+page.md`
+
+```markdown
+About this project
+==================
+
+This will be a description of the project
+```
+
+Create the file `src/routes/contact/+page.md`
+
+```markdown
+Contact Me
+==========
+
+How to contact me
+```
+
+Test by browsing directly to these URLs:
+
+```text
+http://localhost:5173/
+http://localhost:5173/about
+http://localhost:5173/contact
+```
+
+Add this `<style>` block to `src/app.html` in the
+`<head>` section, just before `%sveltekit.head%`
+
+```css
+<style>
+	:root {
+		--bkg-color: GhostWhite;
+		--text-color: Black;
+		--menu-bkg-color: #09CABE;
+		--menu-text-color: White;
+		}
+	* {
+		box-sizing: border-box;
+		}
+	html, body {
+		height: 100vh;
+		width: 100vw;
+		margin: 0;
+		padding: 0
+		}
+	body {
+		font: 15px sans-serif;
+		display: grid;
+		grid-template-areas:
+			"left top    right"
+			"left middle right"
+			"left bottom right"
+			;
+		grid-template-rows: auto 1fr auto;
+		}
+
+	/* NOTE: Using a CSS variable in place of '800px' doesn't work */
+
+	@media (max-width: 800px) {
+		body {
+			grid-template-columns: 0 100% 0;
+			}
+		}
+
+	@media (min-width: 800px) {
+		body {
+			grid-template-columns: 1fr 800px 1fr;
+			}
+		}
+</style>
+```
+
+Add `id="svelte"` to the `<div>` inside the `<body>`
+
+Create the file `src/routes/+layout.svelte`
+
+```svelte
+<nav>
+	<a href="/">Home</a>
+	<a href="/about">About</a>
+	<a href="/contact">Contact</a>
+</nav>
+
+<main>
+  <slot/>
+</main>
+
+<footer>
+	Built with SvelteKit!
+</footer>
+
+<style>
+	main {
+		grid-area: middle;
+		padding: 15px 5px;
+		overflow: auto;    /* scroll bars appear with large content */
+		background-color: var(--bkg-color);
+		color: var(--text-color);
+		}
+
+	nav, footer {
+		background-color: var(--menu-bkg-color);
+		color: var(--menu-text-color);
+		text-align: center;
+		margin: 0;
+		padding: 5px 0;
+		}
+
+	nav {
+		grid-area: top;
+		}
+	nav a {
+		color: var(--menu-text-color);
+		text-decoration: none;
+		padding: 0 8px;
+		display: inline-block;
+		}
+	nav a:hover {
+		color: white;
+		}
+
+	footer {
+		grid-area: bottom;
+		}
+</style>
+
+```
 
