@@ -3,14 +3,15 @@ Create a template folder
 
 - A Skeleton SvelteKit app
 - Git source code management
+- access to @jdeighan/base-utils, @jdeighan/svelte-utils
 - CoffeeScript enabled
 - vite and svelte config files converted to CoffeeScript
+- Markdown enabled
+- GitHub integration
 
 - A layout with a simple menu
-- Markdown enabled
+- an installable web app
 - Easy deployment as a static app
-- GitHub integration
-- access to @jdeighan/base-utils
 
 
 Instructions:
@@ -27,6 +28,13 @@ $ git init
 $ git add -A
 $ git commit -m "initial commit"
 $ npm run dev -- --open
+```
+
+Add the file `.npmrc`:
+
+```text
+engine-strict=true
+loglevel=silent
 ```
 
 Change `package.json` to:
@@ -118,6 +126,7 @@ console logs for the logged string.
 Test markdown by creating the file `src/routes/test/+page.md`:
 
 ```md
+
 Markdown test page
 ==================
 
@@ -130,3 +139,25 @@ Here is some stuff I use:
 ```
 
 Then browse to `localhost:5173/test`.
+
+GitHub integration
+------------------
+
+(Ensure that the GitHub CLI is installed)
+(From inside the project folder)
+
+```bash
+$ gh repo create
+```
+Choose `Push an existing local repository to GitHub`
+
+Add a remote named `origin`
+
+From this point on, you can push changes (after
+committing locally) via:
+
+```bash
+$ git push
+```
+
+
