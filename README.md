@@ -3,12 +3,13 @@ Create a template folder
 
 - A Skeleton SvelteKit app
 - Git source code management
-- access to @jdeighan/base-utils, @jdeighan/svelte-utils
+- access to @jdeighan/base-utils, @jdeighan/coffee-utils, @jdeighan/svelte-utils
 - CoffeeScript enabled
 - vite and svelte config files converted to CoffeeScript
 - Markdown enabled
 - GitHub integration
 - A layout with a simple menu
+- A Preferences page
 
 - a basic store, using local storage
 - Easy deployment as a static app
@@ -175,13 +176,13 @@ About this project
 This will be a description of the project
 ```
 
-Create the file `src/routes/contact/+page.md`
+Create the file `src/routes/config/+page.md`
 
 ```markdown
-Contact Me
-==========
+Configure
+=========
 
-How to contact me
+A configuration page
 ```
 
 Test by browsing directly to these URLs:
@@ -189,7 +190,7 @@ Test by browsing directly to these URLs:
 ```text
 http://localhost:5173/
 http://localhost:5173/about
-http://localhost:5173/contact
+http://localhost:5173/config
 ```
 
 Add this `<style>` block to `src/app.html` in the

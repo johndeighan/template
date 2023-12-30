@@ -8,5 +8,8 @@ import {
 } from 'vite';
 
 export default {
-  plugins: [sveltekit()]
+  plugins: [sveltekit()],
+  optimizeDeps: {
+    exclude: ["fsevents"] // supposed to fix a vite error, but didn't work
+  }
 };

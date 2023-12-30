@@ -1,0 +1,13 @@
+{
+  "version": 3,
+  "file": "vite.config.js",
+  "sourceRoot": "\\",
+  "sources": [
+    "vite.config.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAAA,OAAA;EAAQ,SAAR;CAAA,MAAA;;AACA,OAAA;EAAQ,YAAR;CAAA,MAAA;;AAEA,OAAA,QAAe;EACd,OAAA,EAAS,CAAC,SAAA,CAAA,CAAD;AADK",
+  "sourcesContent": [
+    "import {sveltekit} from '@sveltejs/kit/vite'\nimport {defineConfig} from 'vite'\n\nexport default {\n\tplugins: [sveltekit()]\n\t}\n"
+  ]
+}

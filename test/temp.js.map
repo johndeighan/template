@@ -1,0 +1,13 @@
+{
+  "version": 3,
+  "file": "temp.js",
+  "sourceRoot": "..\\",
+  "sources": [
+    "test\\temp.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAAa;AAEb,OAAA;EAAQ,eAAR;CAAA,MAAA;;AAEA,OAAO,CAAC,GAAR,CAAY,2BAAZ",
+  "sourcesContent": [
+    "# temp.coffee\r\n\r\nimport {ConfigDataStore} from '$lib/stores.js'\r\n\r\nconsole.log \"testing, testing, testing\"\r\n"
+  ]
+}

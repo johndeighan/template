@@ -1,0 +1,13 @@
+{
+  "version": 3,
+  "file": "svelte.config.js",
+  "sourceRoot": "\\",
+  "sources": [
+    "svelte.config.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAAA,OAAO,OAAP,MAAA;;AACA,OAAA;EAAQ,MAAR;CAAA,MAAA;;AACA,OAAA;EAAQ,kBAAR;CAAA,MAAA;;AAEA,OAAA,QAAe;EACd,GAAA,EAAK;IACJ,OAAA,EAAS,OAAA,CAAA,CADL;IAEJ,IAAA,EACC;MAAA,OAAA,EACC;QAAA,KAAA,EACC;UAAA,IAAA,EAAM,IAAI,CAAC,OAAL,CAAa,WAAb;QAAN;MADD;IADD;EAHG,CADS;EAQd,UAAA,EAAY,CAAC,SAAD,EAAY,KAAZ,CARE;EASd,UAAA,EAAY;IACX,MAAA,CAAO;MAAC,UAAA,EAAY,CAAC,KAAD;IAAb,CAAP,CADW;IAEX;MACC,MAAA,EAAQ;IADT,CAFW;;AATE",
+  "sourcesContent": [
+    "import adapter from '@sveltejs/adapter-static'\nimport {mdsvex} from 'mdsvex'\nimport {coffeePreProcessor} from '@jdeighan/svelte-utils/preprocessors'\n\nexport default {\n\tkit: {\n\t\tadapter: adapter()\n\t\tvite:\n\t\t\tresolve:\n\t\t\t\talias:\n\t\t\t\t\t$lib: path.resolve(\"./src/lib\")\n\t\t}\n\textensions: ['.svelte', '.md'],\n\tpreprocess: [\n\t\tmdsvex({extensions: ['.md']})\n\t\t{\n\t\t\tscript: coffeePreProcessor\n\t\t\t}\n\t\t]\n\t}\n"
+  ]
+}
